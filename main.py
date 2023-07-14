@@ -22,6 +22,6 @@ print_kalman_graph(x_true, y_true, noisy_path, filtered_path)
 
 # Calculate accuracy (RMSE)
 simulations_num = 100
-rmse_values = calculate_kalman_accuracy(simulations_num, noise_mean, noise_standard_deviation, initial_state,
-                                        motion_variance, measurement_variance)
-print_kalman_accuracy(simulations_num, rmse_values)
+mean_rmse_values = calculate_kalman_accuracy(simulations_num, noise_mean, noise_standard_deviation, initial_state,
+                                             motion_variance, measurement_variance)
+print_kalman_accuracy(mean_rmse_values)
