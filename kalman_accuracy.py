@@ -5,17 +5,25 @@ from kalman_filter import kalman_filter
 from noisy_path import generate_noisy_path
 
 
-# Calculate accuracy (RMSE)
-def calculate_kalman_accuracy(simulations_num, noise_mean, noise_standard_deviation, initial_state, motion_variance,
-                              measurement_variance):
-    deviation_values = []
+# Calculate Kalman Filter accuracy (RMSE)
+def calculate_kalman_accuracy(simulations_num, x_initial, y_initial, x_velocity, y_velocity, time, noise_mean,
+                              noise_standard_deviation, motion_variance, measurement_variance):
+    rmse_values = []
 
     for i in range(simulations_num):
-        x_true, y_true, noisy_path = generate_noisy_path(noise_mean, noise_standard_deviation)
-        filtered_path = kalman_filter(noisy_path, initial_state, motion_variance, measurement_variance)
-        deviation_values.append((filtered_path - y_true) ** 2)
+        # Generate original path and noisy path
+        x_path, y_path, x_noisy, y_noisy = generate_noisy_path(x_initial, y_initial, x_velocity, y_velocity, time,
+                                                               noise_mean, noise_standard_deviation)
 
-    mean_rmse_values = np.sqrt(np.mean(np.array(deviation_values), axis=0))
+        # Apply Kalman Filter
+        x_filtered, y_filtered = kalman_filter(x_noisy, y_noisy, x_initial, y_initial, x_velocity, y_velocity,
+                                               motion_variance, measurement_variance)
+
+        # Calculate RMSE separately for each time unit
+        rmse_values.append(np.sqrt((x_filtered - x_path) ** 2 + (y_filtered - y_path) ** 2))
+
+    #  Calculate mean RMSE separately for each time unit
+    mean_rmse_values = np.mean(np.array(rmse_values), axis=0)
 
     return mean_rmse_values
 
