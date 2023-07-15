@@ -19,8 +19,7 @@ def compute_kalman_accuracy_uniform_velocity(simulations_num, x_initial, y_initi
 
         # Apply Kalman Filter
         x_filtered, y_filtered = kalman_filter_uniform_velocity(x_noisy, y_noisy, x_initial, y_initial, x_velocity,
-                                                                y_velocity,
-                                                                motion_variance, measurement_variance)
+                                                                y_velocity, motion_variance, measurement_variance)
 
         # Compute RMSE separately for each time unit
         rmse_values.append(np.sqrt((x_filtered - x_path) ** 2 + (y_filtered - y_path) ** 2))
