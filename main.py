@@ -5,8 +5,8 @@ from noisy_path import generate_noisy_path, generate_noisy_acceleration_path
 # Define path parameters
 x_initial = 0
 y_initial = 0
-x_velocity = 1
-y_velocity = 1
+x_velocity = 2
+y_velocity = 2
 acceleration = 2
 time = 100
 noise_mean = 0

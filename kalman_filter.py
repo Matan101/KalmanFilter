@@ -39,6 +39,10 @@ def kalman_filter(x_noisy, y_noisy, x_initial, y_initial, x_velocity, y_velocity
         state = A @ state
         P = A @ P @ A.T + Q
 
+        # Save next filtered to filtered path
+        x_filtered.append(state[0])
+        y_filtered.append(state[1])
+
         # Update
         z = np.array([x_noisy[i], y_noisy[i]])
         residual_mean = z - H @ state
@@ -46,10 +50,6 @@ def kalman_filter(x_noisy, y_noisy, x_initial, y_initial, x_velocity, y_velocity
         K = P @ H.T @ np.linalg.inv(residual_cov)
         state = state + K @ residual_mean
         P = P - K @ H @ P
-
-        # Save next filtered to filtered path
-        x_filtered.append(state[0])
-        y_filtered.append(state[1])
 
     return x_filtered, y_filtered
 
