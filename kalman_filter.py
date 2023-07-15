@@ -32,7 +32,7 @@ def kalman_filter(x_noisy, y_noisy, x_initial, y_initial, x_velocity, y_velocity
 
     # Initialize state
     state = np.array([x_initial, y_initial, x_velocity, y_velocity])
-    
+
     # Kalman filter loop
     for i in range(len(x_noisy)):
         # Predict
@@ -45,7 +45,7 @@ def kalman_filter(x_noisy, y_noisy, x_initial, y_initial, x_velocity, y_velocity
         residual_cov = H @ P @ H.T + R
         K = P @ H.T @ np.linalg.inv(residual_cov)
         state = state + K @ residual_mean
-        P = (P - K @ H) @ P
+        P = P - K @ H @ P
 
         # Save next filtered to filtered path
         x_filtered.append(state[0])
