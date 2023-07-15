@@ -1,8 +1,9 @@
 import numpy as np
 
 
-# Generate original path and noisy path
-def generate_noisy_path(x_initial, y_initial, x_velocity, y_velocity, time, noise_mean, noise_standard_deviation):
+# Generate uniform velocity original path and noisy path
+def generate_noisy_uniform_velocity_path(x_initial, y_initial, x_velocity, y_velocity, time, noise_mean,
+                                         noise_standard_deviation):
     x_path = np.linspace(x_initial, x_initial + x_velocity * time, time)
     y_path = np.linspace(y_initial, y_initial + y_velocity * time, time)
 
@@ -13,15 +14,15 @@ def generate_noisy_path(x_initial, y_initial, x_velocity, y_velocity, time, nois
     return x_path, y_path, x_noisy, y_noisy
 
 
-# Generate original acceleration path and noisy path
-def generate_noisy_acceleration_path(x_initial, y_initial, x_velocity, y_velocity, acceleration, time, noise_mean,
-                                     noise_standard_deviation):
+# Generate Uniform acceleration original path and noisy path
+def generate_noisy_uniform_acceleration_path(x_initial, y_initial, x_velocity, y_velocity, x_acceleration,
+                                             y_acceleration, time, noise_mean, noise_standard_deviation):
     x_path = [x_initial]
     y_path = [y_initial]
 
     for i in range(1, time):
-        x_path.append(x_path[i - 1] + x_velocity * i + acceleration / 2)
-        y_path.append(y_path[i - 1] + y_velocity * i + acceleration / 2)
+        x_path.append(x_path[i - 1] + x_velocity * i + x_acceleration / 2)
+        y_path.append(y_path[i - 1] + y_velocity * i + y_acceleration / 2)
 
     # Add noise to the original path
     x_noisy = [x + np.random.normal(noise_mean, noise_standard_deviation) for x in x_path]
