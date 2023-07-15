@@ -1,5 +1,5 @@
-from kalman_accuracy import print_kalman_accuracy, \
-    compute_kalman_accuracy_uniform_velocity, compute_kalman_accuracy_uniform_acceleration
+from kalman_accuracy import print_kalman_accuracy, compute_kalman_accuracy_uniform_velocity, \
+    compute_kalman_accuracy_uniform_acceleration
 from kalman_filter import print_kalman_graph, kalman_filter_uniform_acceleration, kalman_filter_uniform_velocity
 from noisy_path import generate_noisy_uniform_acceleration_path, generate_noisy_uniform_velocity_path
 

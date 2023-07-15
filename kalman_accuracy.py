@@ -5,7 +5,7 @@ from kalman_filter import kalman_filter_uniform_velocity, kalman_filter_uniform_
 from noisy_path import generate_noisy_uniform_velocity_path, generate_noisy_uniform_acceleration_path
 
 
-# Compute Kalman Filter accuracy (RMSE) for # Kalman Filter Algorithm for uniform velocity
+# Compute Kalman Filter accuracy (RMSE) for Kalman Filter Algorithm for uniform velocity
 def compute_kalman_accuracy_uniform_velocity(simulations_num, x_initial, y_initial, x_velocity, y_velocity, time,
                                              noise_mean, noise_standard_deviation, motion_variance,
                                              measurement_variance):
@@ -30,7 +30,7 @@ def compute_kalman_accuracy_uniform_velocity(simulations_num, x_initial, y_initi
     return mean_rmse_values
 
 
-# Compute Kalman Filter accuracy (RMSE) for # Kalman Filter Algorithm for uniform acceleration
+# Compute Kalman Filter accuracy (RMSE) for Kalman Filter Algorithm for uniform acceleration
 def compute_kalman_accuracy_uniform_acceleration(simulations_num, x_initial, y_initial, x_velocity, y_velocity,
                                                  x_acceleration, y_acceleration, time, noise_mean,
                                                  noise_standard_deviation, motion_variance, measurement_variance):
