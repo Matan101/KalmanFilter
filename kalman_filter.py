@@ -32,6 +32,7 @@ def kalman_filter(x_noisy, y_noisy, x_initial, y_initial, x_velocity, y_velocity
 
     # Initialize state
     state = np.array([x_initial, y_initial, x_velocity, y_velocity])
+    
     # Kalman filter loop
     for i in range(len(x_noisy)):
         # Predict
